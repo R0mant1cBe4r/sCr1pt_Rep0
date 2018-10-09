@@ -25,7 +25,7 @@ def urlwrite(path_, pwd):
     f_.flush()
     f_.close()
 
-#defsha512
+#sha512
 def sha_512(pwd):
     salt = "hV2VRhZO"
     pwd_hash = hashlib.sha512()
