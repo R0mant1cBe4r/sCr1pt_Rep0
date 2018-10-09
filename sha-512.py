@@ -19,7 +19,7 @@ def pwdread(path):
     return pwd
 
 #文件写入
-def urlwrite(path_, pwd):
+def pwdwrite(path_, pwd):
     f_ = open(path_, 'a+')  #执行文件之前先将旧文件删除
     f_.write(pwd+"\n")
     f_.flush()
@@ -36,7 +36,7 @@ def main(path, path_):
     passwd = []
     passwd = pwdread(path)
     for pwd in passwd:
-        urlwrite(path_, sha_512(pwd))   
+        pwdwrite(path_, sha_512(pwd))   
 
 if __name__ == '__main__':
     e1 = datetime.datetime.now()
