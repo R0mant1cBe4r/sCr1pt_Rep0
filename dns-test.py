@@ -3,13 +3,11 @@
 
 import requests
 import string
-from multiprocessing import Pool
 import datetime
 
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 # 禁用安全请求警告
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-
 
 #init
 def dnsinit():
@@ -83,7 +81,6 @@ def main(path):
     for ur in url:
         selecode(ur)
 
-
 if __name__ == '__main__':
     dnsinit()
     #print ("Now the script begins:")
@@ -93,11 +90,3 @@ if __name__ == '__main__':
     e2 = datetime.datetime.now()
     print("* Spend time:"+str(e2-e1))
     print ("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * ")
-
-
-
-
-
-
-
-
