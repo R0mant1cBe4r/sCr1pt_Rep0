@@ -40,7 +40,7 @@ def main(path, path_):
 
 if __name__ == '__main__':
     e1 = datetime.datetime.now()
-    main("oracle_pwd.txt", "oracle_hash512_pwd.txt")
+    main("pwd.txt", "sha512_pwd.txt")
     e2 = datetime.datetime.now()
     print("Spend time:"+str(e2-e1))
 
