@@ -102,7 +102,7 @@ if __name__ == '__main__':
 
     for i in files:
         #print threads[i].getName()
-        threads[i].setDeamon=True
+        #threads[i].setDeamon=True
         threads[i].start()
     for i in files:
         threads[i].join()
