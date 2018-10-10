@@ -6,14 +6,11 @@ import string
 import threading
 import datetime
 
-
-
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 # 禁用安全请求警告
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 #init
-
 def dnsinit():
     print '''      _                         _                  _   
    __| |  _ __    ___          | |_    ___   ___  | |_ 
