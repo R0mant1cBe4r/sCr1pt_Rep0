@@ -6,6 +6,6 @@ Daily Script
 
 2.dns-test 使用httpcode测试域名存活
 
-3.excel-operation.py excel部分操作执行
+3.excel-operation excel部分操作执行
 
 4.sha-512  hashlib
