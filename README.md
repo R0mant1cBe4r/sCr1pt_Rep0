@@ -5,4 +5,4 @@
 * crawl-demo 一个爬虫的小demo
 * dns-test 使用多线程以及httpcode测试域名存活
 * excel-operation excel部分操作执行
-* 4.sha-512  hashlib的使用
+* sha-512  hashlib的使用
