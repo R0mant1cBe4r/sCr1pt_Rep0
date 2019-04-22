@@ -44,7 +44,7 @@ def get_code_banner():
 #构造header头
 def create_request_header():
     user = "admin"
-    security_key = "gWBvVKC}k5y#"
+    security_key = "Your Security key"
     timestamp = str(int(time.time()))
     sha256 = hashlib.sha256()
     sha256.update("{0}{1}{2}".format(user, security_key, timestamp))
