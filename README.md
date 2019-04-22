@@ -6,3 +6,4 @@
 * `dns-test.py` 使用多线程以及httpcode测试域名存活
 * `excel-operation.py` excel部分操作执行
 * `sha-512.py`  hashlib的使用
+* `nmap_port_excel.py`  调用nmap输出全端口开放服务至excel
