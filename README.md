@@ -7,3 +7,4 @@
 * `excel-operation.py` excel部分操作执行
 * `sha-512.py`  hashlib的使用
 * `nmap_port_excel.py`  调用nmap输出全端口开放服务至excel
+* `sty_vuls_excel.py`  调用哨兵云接口输出漏洞细节至excel
