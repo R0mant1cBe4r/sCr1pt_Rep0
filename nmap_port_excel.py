@@ -1,5 +1,7 @@
 # coding=utf-8
 
+# __Author__: Be4r
+
 import nmap
 import json
 import datetime
@@ -11,19 +13,9 @@ sys.setdefaultencoding('utf8')
 
 
 #创建一个excel
-workbook = xlsxwriter.Workbook(u"端口开放.xlsx")
+workbook = xlsxwriter.Workbook(u'端口开放.xlsx')
 #创建一个sheet
-worksheet = workbook.add_worksheet("端口开放")
-
-
-'''
-#自定义样式，加粗
-bold = workbook.add_format({'bold': 1})
-
-#写入表头
-headings = ['ip','漏洞名称','漏洞等级','漏洞类型','漏洞地址','漏洞细节','修复建议']
-worksheet.write_row('A1', headings, bold)
-'''
+worksheet = workbook.add_worksheet('端口开放')
 
 #写入字段名
 def write_to_param(row_num):
@@ -68,7 +60,6 @@ def get_port_detail(port, ip_port_dict):
 #进度条展示
 def get_progress_bar(id,num):
     percent = 1.0 * id / num * 100
-    #print 'complete percent:' + str(percent) + '%', 
     print 'complete   percent:%.2f' % percent + '%',   
     sys.stdout.write("\r")
     time.sleep(0.1)
@@ -77,37 +68,47 @@ if __name__== "__main__":
     
     starttime = datetime.datetime.now()
 
-    print u"开始批量端口服务扫描"
-    ip_port_dict = scan("example.txt")['scan']
-    print u"端口服务扫描结束，开始整理数据"
+    print 'Start port service scan...'
+    ip_port_dict = scan("ip.txt")['scan']
+    print 'End of port service scan, start collating data...'
 
-    ip_lenth = len(ip_port_dict)
-    progress = 1
+    #ip数目
+    ip_num = len(ip_port_dict)
+    #标记ip存活数
+    ip_up_num = 0
+    #标记ip未存活数
+    ip_down_num = []
+    #标记写入excel行数
     row_num = 1
 
     for ip in ip_port_dict:
-        ip_row = [ip,'','','']
-        worksheet.write_row('A'+str(row_num),ip_row)
-        row_num = row_num+1
-        write_to_param(row_num)
-        row_num = row_num+1
-        #print nmap_dict
+        try:
+            #port升序
+            ip_port_sort = sorted(ip_port_dict[ip]['tcp'])
 
-        #port升序
-        ip_port_sort = sorted(ip_port_dict[ip]['tcp'])
+            ip_row = [ip,'','','']
+            worksheet.write_row('A'+str(row_num),ip_row)
+            row_num += 1
+            write_to_param(row_num)
+            row_num += 1
+            #print nmap_dict
 
-        #遍历获取all ports数据
-        for port in ip_port_sort:
-            port_detail_list = get_port_detail(port,ip_port_dict[ip]['tcp'])
-            write_port_detail(row_num, port_detail_list)
-            #print port_detail_list
-            row_num = row_num+1
+            #遍历获取all ports数据
+            for port in ip_port_sort:
+                port_detail_list = get_port_detail(port,ip_port_dict[ip]['tcp'])
+                write_port_detail(row_num, port_detail_list)
+                #print port_detail_list
+                row_num += 1
         
-        ip_row[:] = []        
-        get_progress_bar(progress,ip_lenth)
-        progress = progress+1
+            ip_row[:] = []
+            ip_up_num += 1   
 
+        except:
+            ip_down_num.append(str(ip))
+            #continue
 
     endtime = datetime.datetime.now()
     workbook.close()
-    print 'time: '+ str((endtime-starttime).seconds) + 's'
+    print ' * It takes time: '+ str((endtime-starttime).seconds) + 's'
+    print ' * Sum of hosts: ' + str(ip_num) + '; Live hosts: ' + str(ip_up_num)
+    print ' * Non-live hosts: ' + str(ip_down_num)
