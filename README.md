@@ -12,3 +12,4 @@
 * `rsa_easy_test.py`  RSA加解密简单使用
 * `RSA-GUI.py`  RSA UI化实现（py2 pyqt4）
 * `TiTAN-API.py`  青藤云蜜罐数据输出
+* `get_ssl_details.py`  获取域名配置SSL证书详情
